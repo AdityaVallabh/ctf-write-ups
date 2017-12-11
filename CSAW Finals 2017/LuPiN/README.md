@@ -25,5 +25,5 @@ Therefore rewriting the equations gives:
 That's it! That's all we need for cracking this question! It's just simple math! <br />
 Since nc doesn't work now that the contest is over, you can run the script against lpn_chal.py and my sim_nc() method would do that for you. <br />
 Now, the outputs of lpn_chal.py were printed using the repr() method and a quick Google search reveals the reverse of it is literal_eval() and deserializing would give us back the original matrices. Plugging the values into our equations (4) and (5) and unpacking v gives:<br />
-#### `flag{generalizing_vignere_to_arbitrary_groups_is_not_good}` <br />
+#### `flag{gl4d_y0u_d1d_n0t_turn_1nt0_a_w4r3w0lf}` <br />
 However, the decryption might have to be attempted multiple times (so be patient :P) probably due to excess "noise" created during encryption (Not exactly sure, would be glad to know why). <br />
