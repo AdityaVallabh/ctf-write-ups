@@ -1,57 +1,57 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import socket
 
-def nc():
+# The main method
+def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect(("capoditutticapi01.3dsctf.org", 8001))
+    s.connect(("capoditutticapi01.3dsctf.org", 8001))   # Connect to host
     data = s.recv(1024).decode("utf-8")
     print(data, end='')
     s.send(str.encode("start"))
     print("start")
-    count = 1
-    for page in range(1, 11, 1):
+
+    # Iterate through the Pages
+    for _ in range(10):
         data = s.recv(1024).decode("utf-8")
         print(data, end='')
-        data = s.recv(1024).decode("utf-8")
+        data = s.recv(1024).decode("utf-8")             # Get the question
         print(data, end='')
-        crt = data[36+len(str(page)):-22].split()
-        c = crt[0][:-1]
-        r = int(crt[1][:-1])
-        t = ""
-
-        for st in range(2, len(crt)):
-            t += crt[st] + " "
-
-        cipher = [[c, r, t]]
-        ptxt = normC(normR(cipher))[0][2]
+        crt = extractTuple(data)                        # Get the tuple [c, r, t]
+        ptxt = substituteCipher(caesarShift(crt))[2]    # Apply decryption algo
         print(ptxt)
-        s.send(str.encode(ptxt))
-        count += 1
+        s.send(str.encode(ptxt))                        # Send the answer
+
     data = s.recv(1024).decode("utf-8")
     print(data, end='')
-    data = s.recv(1024).decode("utf-8")
-    print(data, end='')
+    data = s.recv(1024).decode("utf-8")                 
+    print(data, end='')                                 # Print the flag
 
-def normR(lis):
-    newLis = []
-    for s in lis:
-        a = s[0]
-        a += a[:s[1]]
-        a = a[s[1]:]
-        newLis += [[a, 0, s[2]]]
-    return newLis
+# The ROT() function
+def caesarShift(s):
+    a = s[0]
+    a += a[:s[1]]
+    a = a[s[1]:]
+    return [a, 0, s[2]]
 
-def normC(lis):
+# The Substitution function
+def substituteCipher(s):
     alpha = "abcdefghijklmnopqrstuvwxyz"
-    for s in lis:
-        for i in range(26):
-            s[2] = s[2].replace(s[0][i], alpha[i])
-            s[0] = s[0].replace(s[0][i], alpha[i])
-        for i in range(26):
-            s[2] = s[2].replace(s[0][i], s[0][i].upper())
-            s[0] = s[0].replace(s[0][i], s[0][i].upper())
-    return lis
+    for i in range(26):
+        s[2] = s[2].replace(s[0][i], alpha[i])
+        s[0] = s[0].replace(s[0][i], alpha[i])
+    for i in range(26):
+        s[2] = s[2].replace(s[0][i], s[0][i].upper())
+        s[0] = s[0].replace(s[0][i], s[0][i].upper())
+    return s
+
+# Extract the tuple from the data reeceived
+def extractTuple(text):
+    crt = text.split("[c, r, p]: [",2)[1]               # Get the tuple part
+    crt = crt.split("]")[0].split(", ", 2)              # Get the c, r, p values
+    crt[1] = int(crt[1])                                # Typecast r
+    return crt
 
 if __name__ == "__main__":
-    nc()
+    main()
+    

@@ -1,7 +1,5 @@
 # Capo Di Tutti Capi - 456 Points
 
-## Question:
- 
 ### Help the FBI
 
 <b> Server: capoditutticapi01.3dsctf.org
