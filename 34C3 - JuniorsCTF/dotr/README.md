@@ -1,6 +1,6 @@
 # dotr - mid
 
-<b>I implemented some [crypto](./dotr.py) and encrypted my secret: 03_duCbr5e_i_rY_or cou14:L4G f313_Th_etrph00 Wh03UBl_oo?n07!_e
+<b>I implemented some [crypto](./dotr.py) and encrypted my secret: `03_duCbr5e_i_rY_or cou14:L4G f313_Th_etrph00 Wh03UBl_oo?n07!_e`
 
 Can you get it back? </b>
 
