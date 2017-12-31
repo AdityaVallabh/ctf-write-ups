@@ -20,13 +20,13 @@ In other words: `newQuery, newSaltedHash = hashLengthExtensionAttack(newKeyValue
 
 #### Performing the Attack
 In this case, we can construct a query such that it begins with `?f=sample.gif` and ends with `f=flag`, something like `?f=sample.gif&XXXXXXXXXXX&f=flag`.
-Such a query would give prefernce to the latter value assigning the value `flag` to the key `f`. So we have the following: 
+Such a query would give preference to the latter value assigning the value `flag` to the key `f`. So we have the following: 
 ```
 query = 'f=sample.gif'
 saltedHash = '952bb2a215b032abe27d24296be099dc3334755c'
 newKeyValue = 'f=flag'
 ```
 
-[This](https://github.com/stephenbradshaw/hlextend) is a useful I found to perform the necessary attack. We do not know the length of the salt but it can be bruteforced easily. I wrote a script to do exactly this with the help of the hlextend module. After running the script, for salt length = 15, we get the flag: `34C3_a11_y0u_ne3d_is_puMp_and_dump`
+[This](https://github.com/stephenbradshaw/hlextend) is a useful tool I found to perform the necessary attack. We do not know the length of the salt but it can be bruteforced easily. I wrote a script to do exactly this with the help of the hlextend module. After running the script, for salt length = 15, we get the flag: `34C3_a11_y0u_ne3d_is_puMp_and_dump`
 
 ![ScriptDemo](./demo.png "ScriptDemo")
