@@ -1,4 +1,4 @@
-# JS Safe 2.0 - 200
+# JS Safe 2.0 - 121
 
 Here's the challenge task from the web category:
 
