@@ -128,7 +128,7 @@ Finally, 4 characters are being concatenated and returned which are generated fr
 Then it struck me! We cannot possibly brute force the input but we can definitely brute force `a` and `b` which would yield all possible keys and we can pick the one which produces a valid english plaintext when passed through `c()`. Also, we need to make sure the resulting text produces the same values of `a` and `b` when passed through `h()`.
 I thought about the range of `a` and `b`, its `0 to 65521` and if my hunch is right, the `a` we are looking for must be in the range `2714 to 65521` and `b` in the range `33310 to 65521` *(because those were the initial values of `a` and `b` when `h()` was being called the second time)*.
 
-I quickly scripted this in python and wrote my own version of `c()` to know quickly if it generates a valid english alphabet result for a given `a` and `b`.
+I quickly scripted this in python and wrote my own version of `c()` to know quickly if it generates a valid english alphabet result for a given `a` and `b`. Here's my script for that: [js_safe_.py](js_safe.py)
 ```py
 chars = string.ascii_uppercase + string.ascii_lowercase + string.digits + '_@!?-'
 
@@ -153,7 +153,7 @@ for a in range(2714, n, 1):
 			print('(%d, %d) => %s' % (a, b, inp))
 ```
 
-After a while, we get the flag we are looking for! The first string doesn't make complete sense but the second one does!
+Run the script and after a while, we get the flag we are looking for! The first string doesn't make complete sense but the second one does!
 
 ![Image 5](images/img5.png)
 
